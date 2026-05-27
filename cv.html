@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gregorio Pisaneschi | Research & Engineering Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --accent-light: #f5f3ff;
+            --border: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --sidebar-width: 280px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-main: #090d16;
+                --surface: #111827;
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --accent: #818cf8;
+                --accent-hover: #6366f1;
+                --accent-light: rgba(99, 102, 241, 0.12);
+                --border: #1f2937;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrapper {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            gap: 48px;
+            padding: 60px 24px;
+        }
+
+        aside {
+            width: var(--sidebar-width);
+            flex-shrink: 0;
+        }
+
+        .sticky-panel {
+            position: sticky;
+            top: 40px;
+            background: var(--surface);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.03);
+        }
+
+        .profile-brief h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-brief p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0 0 28px 0;
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .nav-menu a.active {
+            color: var(--surface);
+            background: var(--accent);
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.02);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin: 0 0 20px 0;
+            background: linear-gradient(135deg, var(--text-main) 40%, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+
+        .contact-grid a, .contact-grid span.loc {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            transition: all 0.2s ease;
+        }
+
+        .contact-grid a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .summary-block {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            border-left: 4px solid var(--accent);
+            padding-left: 24px;
+            margin: 0;
+        }
+
+        h2.section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 0 32px 0;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        h2.section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .timeline-entry {
+            position: relative;
+            padding-left: 28px;
+            border-left: 2px solid var(--border);
+            transition: border-color 0.3s ease;
+        }
+
+        .timeline-entry:hover {
+            border-color: var(--accent);
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-entry:hover::before {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .entry-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .entry-date {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 4px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .entry-sub {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        li strong {
+            color: var(--text-main);
+        }
+
+        .skills-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-module {
+            background: var(--bg-main);
+            padding: 28px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .skill-module h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            color: var(--text-main);
+        }
+
+        .pub-card {
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 16px;
+        }
+
+        .pub-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .pub-card:hover {
+            border-color: var(--accent);
+            background: var(--surface);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(99, 102, 241, 0.15);
+        }
+
+        .pub-title {
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            font-size: 1.1rem;
+            transition: color 0.2s ease;
+        }
+
+        .pub-card:hover .pub-title {
+            color: var(--accent);
+        }
+
+        .pub-authors {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .pub-journal {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pub-journal::after {
+            content: '→';
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .pub-card:hover .pub-journal::after {
+            transform: translateX(4px);
+        }
+
+        .pub-abstract {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--surface);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .global-scholar {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid var(--accent);
+            border-radius: 30px;
+            transition: all 0.2s ease;
+        }
+
+        .global-scholar:hover {
+            background: var(--accent);
+            color: var(--surface);
+        }
+
+        @media (max-width: 992px) {
+            .wrapper {
+                flex-direction: column;
+                padding: 24px 12px 100px 12px;
+                gap: 24px;
+            }
+
+            aside {
+                width: 100%;
+            }
+
+            .sticky-panel {
+                position: fixed;
+                bottom: 12px;
+                left: 12px;
+                right: 12px;
+                top: auto;
+                z-index: 1000;
+                border-radius: 40px;
+                padding: 6px;
+                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.5);
+            }
+
+            @media (prefers-color-scheme: dark) {
+                .sticky-panel {
+                    background: rgba(17, 24, 39, 0.8);
+                    border: 1px solid rgba(255, 255, 255, 0.05);
+                }
+            }
+
+            .profile-brief {
+                display: none;
+            }
+
+            .nav-menu {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 0;
+                width: 100%;
+            }
+
+            .nav-menu a {
+                padding: 10px 0;
+                font-size: 0.8rem;
+                flex: 1;
+                justify-content: center;
+                border-radius: 30px;
+            }
+
+            .card {
+                padding: 28px 20px;
+            }
+
+            header h1 {
+                font-size: 2.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <aside>
+        <div class="sticky-panel">
+            <div class="profile-brief">
+                <h2>Gregorio Pisaneschi</h2>
+                <p>Ph.D. Mechanical Engineer</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="#about" class="active">Overview</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
+                <a href="#publications">Research</a>
+            </nav>
+        </div>
+    </aside>
+
+    <main>
+        <section id="about" class="card">
+            <header>
+                <h1>Gregorio Pisaneschi</h1>
+                <div class="contact-grid">
+                    <span class="loc">Bologna, Italy</span>
+                    <a href="mailto:gregorio.pisaneschi@unibo.it">gregorio.pisaneschi@unibo.it</a>
+                    <a href="https://www.unibo.it/sitoweb/gregorio.pisaneschi" target="_blank">UniBo Profile</a>
+                    <a href="https://orcid.org/0000-0001-6221-4811" target="_blank">ORCID Portal</a>
+                </div>
+                <p class="summary-block">
+                    Ph.D. Mechanical Engineer with 10+ years of experience in smart materials, additive manufacturing, and advanced biomedical devices. Extensive background in multidisciplinary projects from concept through design and prototype, actively consolidating an independent research line on assistive devices with a strong focus on mechanical design and experimental validation of integrated actuation and sensing.
+                </p>
+            </header>
+        </section>
+
+        <section id="experience" class="card">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline-container">
+                <div class="timeline-entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Research Grant Holder</span>
+                        <span class="entry-date">Feb. 2024 – Present</span>
+                    </div>
+                    <div class="entry-sub">University of Bologna — DIN & CIRI MAM Departments</div>
+                    <ul>
+                        <li><strong>Project ReMovAble (Aug. 2025 – Present):</strong> Developing an assistive hand exoskeleton for tetraplegic patients utilizing superelastic shape memory alloy Bowden cables to support hand motor functions.</li>
+                        <li><strong>Project DAREDEVIL (Feb. 2024 – Jan. 2025):</strong> Designed a pneumatic automated system and generated a numerical analysis database for implementation in a Digital Twin system.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Adjunct Professor</span>
+                        <span class="entry-date">Sept. 2017 – Present</span>
+                    </div>
+                    <div class="entry-sub">University of Bologna — DEI Department</div>
+                    <ul>
+                        <li>Course: "Automatic Machines TA" for Automation Engineering. Integrating team-driven design workshops with the study and design of automatic pneumatic systems.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Core Project Researcher</span>
+                        <span class="entry-date">June 2022 – June 2025</span>
+                    </div>
+                    <div class="entry-sub">Arburg Plastic Freeformer Initiative (CIRI MAM / Bi-Rex)</div>
+                    <ul>
+                        <li>Analyzed the droplet process and evaluated material printability for custom 3D printing applications.</li>
+                        <li>Finite element evaluation and design of patient-specific 3D-printed cranial and maxillofacial bone plates.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Research Fellow</span>
+                        <span class="entry-date">Sept. 2015 – Nov. 2020</span>
+                    </div>
+                    <div class="entry-sub">University of Bologna — DIN & CIRI MAM Departments</div>
+                    <ul>
+                        <li><strong>ACMEC European Project (2020):</strong> Design of an actuation system with Shape Memory Alloy actuators for format changes on process lines.</li>
+                        <li><strong>IMA Group Partnership (2017 – 2019):</strong> Developed additive manufacturing strategies focused on design space exploration and structural topology optimization.</li>
+                        <li><strong>Philip Morris International Track (2016 – 2017):</strong> Investigation of process criticalities for the production of IQOS sticks.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="card">
+            <h2 class="section-title">Education & Training</h2>
+            <div class="timeline-container">
+                <div class="timeline-entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Ph.D. in Mechanics and Advanced Engineering Sciences (DIMSAI)</span>
+                        <span class="entry-date">Oct. 2020 – June 2024</span>
+                    </div>
+                    <div class="entry-sub">University of Bologna — Evaluation: Excellent</div>
+                    <ul>
+                        <li><strong>Dissertation:</strong> Study and Design of Novel Applications and Implementation Strategies for Shape Memory Alloys (SMAs).</li>
+                        <li><strong>International Research Stay:</strong> Feasibility study of an SMA Bowden cable for assistive devices at Miguel Hernandez University (Biomedical Neuroengineering Group).</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="entry-header">
+                        <span class="entry-title">M.Sc. in Mechanical Engineering</span>
+                        <span class="entry-date">Sep. 2012 – July 2015</span>
+                    </div>
+                    <div class="entry-sub">University of Bologna — 110/110 with Honors</div>
+                    <ul>
+                        <li>Specialization in the mechanical engineering of automation and design.</li>
+                        <li><strong>International Thesis:</strong> Design and optimization of a large-stroke flexure hinge for parallel mechanisms at the University of Twente, Netherlands.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="card">
+            <h2 class="section-title">Technical Matrix</h2>
+            <div class="skills-dashboard">
+                <div class="skill-module">
+                    <h3>Simulation & Numerical Design</h3>
+                    <ul>
+                        <li>ANSYS finite element modeling (structural, modal, flexible, transient, topology optimization).</li>
+                        <li>Advanced 3D CAD modeling, surface validation, and automated multi-joint kinematic analysis.</li>
+                        <li>Computation using MATLAB (modal analysis, nonlinear systems, optimization, data analysis) and Wolfram Mathematica.</li>
+                    </ul>
+                </div>
+                <div class="skill-module">
+                    <h3>Prototyping & Characterization</h3>
+                    <ul>
+                        <li>Additive Systems: FDM, Arburg Plastic Freeforming (APF), DLP, structural printed electronics.</li>
+                        <li>Material testing protocols: Universal testing machines (tensile, flexural, shear, pull-out), Digital Image Correlation, and drop weight impact profile setup.</li>
+                        <li>Languages: Italian (Native), English (Professional working proficiency), Spanish (Limited working proficiency).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="card">
+            <h2 class="section-title">Selected Publications & Patents</h2>
+            
+            <a href="https://www.unibo.it/it/con-societa-e-impresa/imprese-e-non-profit/brevetti-ateneo/brevetti-ateneo/scheda/2528" target="_blank" class="pub-card">
+                <span class="pub-title">High-efficiency self-limiting tendon-mimetic Bowden cable with feedback control</span>
+                <div class="pub-authors">Inventor: G. Pisaneschi</div>
+                <div class="pub-journal">Italian Patent nº 102024000017122</div>
+                <div class="pub-abstract">
+                    Introduces a built-in passive mechanical overload control and active intrinsic sensing by electrical resistance utilizing superelastic smart alloy structures.
+                </div>
+            </a>
+
+            <a href="https://doi.org/10.1109/LRA.2025.3605094" target="_blank" class="pub-card">
+                <span class="pub-title">Superelastic Tendon-Like Bowden Cables: Advancing Assistive Exoskeletons</span>
+                <div class="pub-authors">G. Pisaneschi, et al.</div>
+                <div class="pub-journal">IEEE Robotics and Automation Letters (2025)</div>
+                <div class="pub-abstract">
+                    Demonstrates built-in self-sensing safety behaviors in assistive wearable actuators using integrated superelastic configurations.
+                </div>
+            </a>
+
+            <a href="https://doi.org/10.1016/j.compositesb.2024.111785" target="_blank" class="pub-card">
+                <span class="pub-title">Enhanced interface adhesion in shape memory alloy hybrid composites via an elastomeric interface</span>
+                <div class="pub-authors">G. Pisaneschi, et al.</div>
+                <div class="pub-journal">Composites Part B: Engineering (2024)</div>
+                <div class="pub-abstract">
+                    Addresses and resolves interface failure patterns generated by large martensitic transformation strains within smart matrix materials.
+                </div>
+            </a>
+
+            <a href="https://doi.org/10.1088/1361-665X/ae4ae9" target="_blank" class="pub-card">
+                <span class="pub-title">Post-print annealing: a simple strategy for enhancing adhesion in FDM-printed PLA-SMA composites</span>
+                <div class="pub-authors">G. Pisaneschi, et al.</div>
+                <div class="pub-journal">Smart Materials and Structures (2026)</div>
+                <div class="pub-abstract">
+                    Feasibility study on an innovative solution for the embedding of shape memory alloys in additive manufacturing composites.
+                </div>
+            </a>
+
+            <a href="https://doi.org/10.1007/s40964-025-01098-1" target="_blank" class="pub-card">
+                <span class="pub-title">Numerical and Experimental Exploration of Patient-Specific Cranial Implants with 3D Printed PEKK via Arburg Plastic Freeforming</span>
+                <div class="pub-authors">G. Pisaneschi</div>
+                <div class="pub-journal">Progress in Additive Manufacturing (2025)</div>
+                <div class="pub-abstract">
+                    FEA and experiments on patient-specific cranial implants 3D printed with amorphous PEKK with APF technology demonstrated potential to overcome PEEK challenges.
+                </div>
+            </a>
+            
+            <a href="https://scholar.google.com/scholar?q=Gregorio+Pisaneschi" target="_blank" class="global-scholar">
+                View complete collection on Google Scholar
+            </a>
+        </section>
+    </main>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('main section');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        const scrollOptions = {
+            root: null,
+            rootMargin: window.innerWidth > 992 ? '-20% 0px -60% 0px' : '-30% 0px -50% 0px',
+            threshold: 0
+        };
+
+        const scrollSpyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const activeId = entry.target.getAttribute('id');
+                    
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${activeId}`) {
+                            link.classList.add('active');
+                            if (window.innerWidth <= 992) {
+                                link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                            }
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, scrollOptions);
+
+        sections.forEach(section => scrollSpyObserver.observe(section));
+    });
+</script>
+
+</body>
+</html>
