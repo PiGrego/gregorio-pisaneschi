@@ -12,6 +12,8 @@
             --text-secondary: #555555;
             --accent-color: #0e9f6e;
             --border-color: #111111;
+            --collab-bg: #ebfbf4;
+            --personal-bg: #f4f4f5;
         }
 
         * { 
@@ -92,8 +94,10 @@
 
         /* --- COLLABORATION SECTION --- */
         .collab-section {
-            border-top: 2px solid var(--border-color);
-            padding-top: 1.5rem;
+            background-color: var(--collab-bg);
+            border: 2px solid var(--border-color);
+            margin-top: 2.5rem;
+            padding: 1.5rem;
             text-align: left;
         }
 
@@ -125,9 +129,10 @@
 
         /* --- PERSONAL SECTION --- */
         .personal-section {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 2px dashed var(--border-color);
+            background-color: var(--personal-bg);
+            border: 2px solid var(--border-color);
+            margin-top: 1.5rem;
+            padding: 1.5rem;
         }
 
         /* --- FOOTER --- */
