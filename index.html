@@ -122,16 +122,25 @@
         }
 
         .collab-item {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .collab-item:last-child {
+            margin-bottom: 0;
         }
 
         .collab-label {
-            display: block;
-            font-size: 0.75rem;
+            display: inline-block;
+            font-size: 0.8rem;
             font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
             color: var(--accent-color);
-            margin-bottom: 0.2rem;
+            /* A very faint mint highlight just behind the text */
+            background-color: rgba(14, 159, 110, 0.1); 
+            padding: 0.2rem 0.6rem;
+            border-left: 3px solid var(--accent-color);
+            margin-bottom: 0.5rem;
         }
 
         .collab-text {
@@ -185,7 +194,6 @@
 
         <!-- SECTION 3: COLLABORATION -->
         <div class="collab-section">
-            <h2 class="section-title">Collaboration & Opportunities</h2>
             
             <div class="collab-item">
                 <span class="collab-label">Current Work</span>
@@ -195,11 +203,12 @@
             </div>
 
             <div class="collab-item">
-                <span class="collab-label">Seeking</span>
+                <span class="collab-label">Collaboration & Opportunities</span>
                 <p class="collab-text">
-                    Collaborations with biomedical or control engineers developing hand exoskeletons to validate these self-sensing systems. I am also actively exploring new academic positions and future research opportunities.
+                    Seeking partnerships with biomedical or control engineers developing hand exoskeletons to validate these self-sensing systems. I am also actively exploring new academic positions and future research opportunities.
                 </p>
             </div>
+            
         </div>
 
         <!-- SECTION 4: PERSONAL (CV & LINKEDIN) -->
