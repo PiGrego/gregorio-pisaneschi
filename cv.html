@@ -72,7 +72,6 @@
             padding: 28px;
             border-radius: var(--radius-lg);
             border: 1px solid var(--border);
-            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.03);
         }
 
         .profile-brief h2 {
@@ -136,7 +135,6 @@
             padding: 40px;
             border-radius: var(--radius-lg);
             border: 1px solid var(--border);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.02);
         }
 
         header h1 {
@@ -144,9 +142,7 @@
             font-weight: 800;
             letter-spacing: -0.04em;
             margin: 0 0 20px 0;
-            background: linear-gradient(135deg, var(--text-main) 40%, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main);
         }
 
         .contact-grid {
@@ -200,24 +196,74 @@
             background: var(--border);
         }
 
+        /* --- UNIFIED ACCORDION STYLES --- */
+        summary.entry-summary,
+        summary.skill-summary,
+        summary.pub-summary {
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            padding-right: 32px;
+        }
+
+        summary.entry-summary::-webkit-details-marker,
+        summary.skill-summary::-webkit-details-marker,
+        summary.pub-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary.entry-summary::after,
+        summary.skill-summary::after,
+        summary.pub-summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.2;
+            transition: color 0.2s ease;
+        }
+
+        details:hover > summary::after {
+            color: var(--accent);
+        }
+
+        details[open] > summary::after {
+            content: '−';
+            color: var(--accent);
+        }
+
+        .expandable-content {
+            margin-top: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- TIMELINE STYLES --- */
         .timeline-container {
             display: flex;
             flex-direction: column;
             gap: 32px;
         }
 
-        .timeline-entry {
+        details.timeline-entry {
             position: relative;
             padding-left: 28px;
             border-left: 2px solid var(--border);
             transition: border-color 0.3s ease;
         }
 
-        .timeline-entry:hover {
+        details.timeline-entry:hover {
             border-color: var(--accent);
         }
 
-        .timeline-entry::before {
+        details.timeline-entry::before {
             content: '';
             position: absolute;
             left: -6px;
@@ -230,7 +276,7 @@
             transition: all 0.3s ease;
         }
 
-        .timeline-entry:hover::before {
+        details.timeline-entry:hover::before {
             background: var(--accent);
             border-color: var(--accent);
             transform: scale(1.2);
@@ -266,7 +312,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 0;
         }
 
         ul {
@@ -288,50 +334,54 @@
             color: var(--text-main);
         }
 
+        /* --- SKILLS STYLES --- */
         .skills-dashboard {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
         }
 
-        .skill-module {
+        details.skill-module {
             background: var(--bg-main);
-            padding: 28px;
+            padding: 24px;
             border-radius: var(--radius-md);
             border: 1px solid var(--border);
+            transition: border-color 0.2s ease;
+        }
+
+        details.skill-module:hover {
+            border-color: var(--accent);
         }
 
         .skill-module h3 {
             font-size: 1.05rem;
             font-weight: 700;
-            margin: 0 0 16px 0;
+            margin: 0;
             color: var(--text-main);
         }
 
-        .pub-card {
+        /* --- PUBLICATION STYLES --- */
+        details.pub-card {
             padding: 24px;
             border-radius: var(--radius-md);
             border: 1px solid var(--border);
             background: var(--bg-main);
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             margin-bottom: 16px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .pub-card:last-child {
+        details.pub-card:last-child {
             margin-bottom: 0;
         }
 
-        .pub-card:hover {
+        details.pub-card:hover {
             border-color: var(--accent);
             background: var(--surface);
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px -10px rgba(99, 102, 241, 0.15);
         }
 
         .pub-title {
+            display: block;
             font-weight: 700;
             color: var(--text-main);
             margin-bottom: 6px;
@@ -339,43 +389,50 @@
             transition: color 0.2s ease;
         }
 
-        .pub-card:hover .pub-title {
+        details.pub-card:hover .pub-title {
             color: var(--accent);
         }
 
         .pub-authors {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .pub-journal {
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--accent);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .pub-journal::after {
-            content: '→';
-            font-size: 1rem;
-            transition: transform 0.2s ease;
-        }
-
-        .pub-card:hover .pub-journal::after {
-            transform: translateX(4px);
+            display: inline-block;
         }
 
         .pub-abstract {
-            margin-top: 12px;
             font-size: 0.85rem;
             color: var(--text-muted);
             background: var(--surface);
-            padding: 12px 16px;
+            padding: 16px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border);
+        }
+
+        .pub-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .pub-link-btn:hover {
+            background: var(--accent);
+            color: var(--surface);
         }
 
         .global-scholar {
@@ -417,7 +474,6 @@
                 z-index: 1000;
                 border-radius: 40px;
                 padding: 6px;
-                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
                 background: rgba(255, 255, 255, 0.85);
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
@@ -471,32 +527,23 @@
             }
         }
 
-        /* ======================================================= */
-        /* SECTION & SIDE-MENU COLOR SYNCHRONIZATION               */
-        /* ======================================================= */
-
         :root {
-            --color-exp: #4f46e5; /* Indigo for Experience */
-            --color-edu: #ef4444; /* Red for Education */
-            --color-ski: #0e9f6e; /* Mint Green for Skills */
-            --color-pub: #f59e0b; /* Amber for Publications */
+            --color-exp: #4f46e5;
+            --color-edu: #ef4444;
+            --color-ski: #0e9f6e;
+            --color-pub: #f59e0b;
         }
 
-        /* 1. Flat Borders for Main Sections */
         #experience { border: 2px solid var(--color-exp); }
         #education { border: 2px solid var(--color-edu); }
         #skills { border: 2px solid var(--color-ski); }
         #publications { border: 2px solid var(--color-pub); }
 
-        /* 2. Highlight Section Background when Scrolled/Targeted */
         #experience:target { background-color: rgba(79, 70, 229, 0.05); }
         #education:target { background-color: rgba(239, 68, 68, 0.05); }
         #skills:target { background-color: rgba(14, 159, 110, 0.05); }
         #publications:target { background-color: rgba(245, 158, 11, 0.05); }
 
-        /* 3. Match Side Menu Links (Hover and Active Highlighting) */
-        /* Adjust 'a[href="..."]' if your side menu links use a specific class */
-        
         a[href="#experience"]:hover, 
         a[href="#experience"].active {
             color: var(--color-exp);
@@ -524,65 +571,12 @@
             border-left: 4px solid var(--color-pub);
             background-color: rgba(245, 158, 11, 0.05);
         }
-
-        /* ======================================================= */
-        /* EXPANDABLE SECTIONS (ACCORDION) STYLING                 */
-        /* ======================================================= */
-
-        /* Base styling for the expandable box */
-        details.cv-section {
-            margin-bottom: 1.5rem;
-            background-color: var(--surface);
-            /* The borders will be applied by your existing #experience, #education rules */
-        }
-
-        /* The clickable title area */
-        details.cv-section summary {
-            font-size: 1.1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 1.2rem 1.5rem;
-            cursor: pointer;
-            list-style: none; /* Hides default browser arrow */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.1s ease;
-        }
-
-        /* Hide the default arrow in Safari */
-        details.cv-section summary::-webkit-details-marker {
-            display: none;
-        }
-
-        /* Hover effect for the clickable title */
-        details.cv-section summary:hover {
-            background-color: rgba(0, 0, 0, 0.03);
-        }
-
-        /* The custom geometric arrow */
-        details.cv-section summary::after {
-            content: '▼';
-            font-size: 0.8rem;
-            transition: transform 0.2s ease;
-        }
-
-        /* Flip the arrow when the section is open */
-        details.cv-section[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        /* Padding for the actual content inside the box */
-        .section-content {
-            padding: 0 1.5rem 1.5rem 1.5rem;
-        }
-        
     </style>
 </head>
 <body>
 
 <div class="wrapper">
-<aside>
+    <aside>
         <div class="sticky-panel">
             <div class="profile-brief">
                 <h2>Gregorio Pisaneschi</h2>
@@ -629,188 +623,254 @@
             </header>
         </section>
 
-<!-- EXPERIENCE (Expandable - Open by default) -->
-        <details id="experience" class="cv-section">
-            <summary>Professional Experience</summary>
-            <div class="section-content">
-                <div class="timeline-container">
-                    
-                    <div class="timeline-entry">
+        <section id="experience" class="card">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline-container">
+                
+                <details class="timeline-entry">
+                    <summary class="entry-summary">
                         <div class="entry-header">
                             <span class="entry-title">Research Grant</span>
                             <span class="entry-date">Feb. 2024 – Present</span>
                         </div>
                         <div class="entry-sub">University of Bologna — DIN & CIRI MAM Departments</div>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
-                            <li><strong>Project ReMovAble (Aug. 2025 – Present):</strong> Developing an assistive hand exoskeleton with a hybrid soft-rigid design to support hand motor functions, in clinical collaboration with the <strong>Montecatone Rehabilitation Institute</strong> for tetraplegic patients.</li>
-                            <li><strong>Project DAREDEVIL (Feb. 2024 – Jan. 2025):</strong> Designed a pneumatic automated system and generated a numerical analysis database for implementation in a Digital Twin system.</li>
+                            <li><strong>Project ReMovAble (Aug. 2025 – Present):</strong> Developing an assistive hand exoskeleton with a hybrid soft-rigid design to support hand motor functions, in clinical collaboration with the <strong>Montecatone Rehabilitation Institute</strong> for tetraplegic patients. Tutor: Prof. Nicola Sancisi.</li>
+                            <li><strong>Project DAREDEVIL (Feb. 2024 – Jan. 2025):</strong> Designed a pneumatic automated system and generated a numerical analysis database for implementation in a Digital Twin system. Coordinator: Bi-Rex.</li>
                         </ul>
                     </div>
+                </details>
 
-                    <div class="timeline-entry">
+                <details class="timeline-entry">
+                    <summary class="entry-summary">
                         <div class="entry-header">
                             <span class="entry-title">Adjunct Professor</span>
                             <span class="entry-date">Sept. 2017 – Present</span>
                         </div>
                         <div class="entry-sub">University of Bologna — DEI Department</div>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
+                            <li>Department of Electrical, Electronic, and Information Engineering "Guglielmo Marconi" (DEI).</li>
                             <li>Course: "Automatic Machines TA" for Automation Engineering. Team-driven design workshops and design of automatic pneumatic systems.</li>
                         </ul>
                     </div>
+                </details>
 
-                    <div class="timeline-entry">
+                <details class="timeline-entry">
+                    <summary class="entry-summary">
                         <div class="entry-header">
                             <span class="entry-title">Accelerator Program</span>
                             <span class="entry-date">Sept. 2025</span>
                         </div>
                         <div class="entry-sub">MITdesignX Venice Accelerator (MDX)</div>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
                             <li>Participated in the venture accelerator program with <a href="https://braillefly.stibuz.dynu.net/a" target="_blank" style="color: var(--accent); text-decoration: underline; font-style: italic;">Braille Fly</a>, an innovative assistive technology project providing guides and a community for the blind and visually impaired.</li>
                         </ul>
                     </div>
+                </details>
 
-                    <div class="timeline-entry">
+                <details class="timeline-entry">
+                    <summary class="entry-summary">
                         <div class="entry-header">
                             <span class="entry-title">Side Project</span>
                             <span class="entry-date">June 2022 – June 2025</span>
                         </div>
                         <div class="entry-sub">Arburg Italia (Freeformer Printer) & Hospital Policlinico S. Orsola (Case Studies)</div>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
-                            <li> Analysed the droplet process and evaluated material printability for custom 3D printing applications.</li>
+                            <li>Analysed the droplet process and evaluated material printability, alongside design for droplet 3D printing with custom materials.</li>
                             <li>Finite element evaluation and design of patient-specific 3D-printed cranial and maxillofacial bone plates.</li>
                         </ul>
                     </div>
+                </details>
 
-                    <div class="timeline-entry">
+                <details class="timeline-entry">
+                    <summary class="entry-summary">
                         <div class="entry-header">
                             <span class="entry-title">Research Fellow</span>
                             <span class="entry-date">Sept. 2015 – Nov. 2020</span>
                         </div>
                         <div class="entry-sub">University of Bologna — DIN & CIRI MAM Departments</div>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
                             <li><strong>ACMEC European Project (2020):</strong> Design of an actuation system with Shape Memory Alloy actuators for format changes on process lines.</li>
-                            <li><strong>IMA Group Partnership (2017 – 2019):</strong> Developed additive manufacturing strategies focused on design space exploration and structural topology optimisation.</li>
+                            <li><strong>IMA Group Partnership (2017 – 2019):</strong> Developed additive manufacturing strategies focused on design space exploration and structural topology optimisation. Design and teaching of a course: "Additive Manufacturing: strategies and design methods".</li>
                             <li><strong>Philip Morris International Track (2016 – 2017):</strong> Investigation of process criticalities for the production of IQOS sticks.</li>
+                            <li><strong>Coop. Edile Appenini (CEA) (2015 - 2016):</strong> Design of a winch carriage for dam waterproofing.</li>
                         </ul>
                     </div>
-                </div>
+                </details>
             </div>
-        </details>
+        </section>
 
-<!-- EDUCATION (Expandable - Closed by default) -->
-        <details id="education" class="cv-section">
-            <summary>Education & Training</summary>
-            <div class="section-content">
-                <div class="timeline-container">
-                    <div class="timeline-entry">
+        <section id="education" class="card">
+            <h2 class="section-title">Education & Training</h2>
+            <div class="timeline-container">
+                
+                <details class="timeline-entry">
+                    <summary class="entry-summary">
                         <div class="entry-header">
                             <span class="entry-title">Ph.D. in Mechanics and Advanced Engineering Sciences (DIMSAI)</span>
                             <span class="entry-date">Oct. 2020 – June 2024</span>
                         </div>
                         <div class="entry-sub">University of Bologna — Evaluation: Excellent</div>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
                             <li><strong>Dissertation:</strong> Study and Design of Novel Applications and Implementation Strategies for Shape Memory Alloys (SMAs).</li>
                             <li><strong>International Research Stay:</strong> Feasibility study of an SMA Bowden cable for assistive devices at Miguel Hernandez University (Biomedical Neuroengineering Group).</li>
                         </ul>
                     </div>
+                </details>
 
-                    <div class="timeline-entry">
+                <details class="timeline-entry">
+                    <summary class="entry-summary">
                         <div class="entry-header">
                             <span class="entry-title">M.Sc. in Mechanical Engineering</span>
                             <span class="entry-date">Sep. 2012 – July 2015</span>
                         </div>
                         <div class="entry-sub">University of Bologna — 110/110 with Honors</div>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
-                            <li> Specialisation in the mechanical engineering of automation and design.</li>
+                            <li>Specialisation in the mechanical engineering of automation and design.</li>
                             <li><strong>International Thesis:</strong> Design and optimisation of a large-stroke flexure hinge for parallel mechanisms at the University of Twente, Netherlands.</li>
                         </ul>
                     </div>
-                </div>
+                </details>
             </div>
-        </details>
+        </section>
 
-<!-- SKILLS (Expandable - Open by default) -->
-        <details id="skills" class="cv-section">
-            <summary>Core Competencies & Skills</summary>
-            <div class="section-content">
-                <div class="skills-dashboard">
-                    <div class="skill-module">
+        <section id="skills" class="card">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-dashboard">
+                
+                <details class="skill-module">
+                    <summary class="skill-summary">
                         <h3>Simulation & Numerical Design</h3>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
                             <li>ANSYS finite element modelling (structural, modal, transient, topology optimisation).</li>
                             <li>Advanced 3D CAD modelling, surface validation, and automated multi-joint kinematic analysis.</li>
                             <li>Computation using MATLAB (nonlinear systems, custom optimisation) and Wolfram Mathematica.</li>
                         </ul>
                     </div>
-                    <div class="skill-module">
+                </details>
+
+                <details class="skill-module">
+                    <summary class="skill-summary">
                         <h3>Prototyping & Characterization</h3>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
-                            <li>Additive Systems: FDM, Arburg Plastic Freeforming (APF), DLP, structural printed electronics.</li>
-                            <li>Material testing protocols: Universal testing machines (tensile, flexural, shear, pull-out), Digital Image Correlation, and drop weight impact profile setup.</li>
-                            <li>Languages: Italian (Native), English (Professional working proficiency), Spanish (Limited working proficiency).</li>
+                            <li>Additive Systems (FDM, Arburg Plastic Freeforming, DLP, structural printed electronics layout).</li>
+                            <li>Material testing protocols (tensile, pull-out, shear, Digital Image Correlation, drop weight impact profile setup).</li>
+                            <li>Languages: Italian (Native), English (Professional), Spanish (Limited).</li>
                         </ul>
                     </div>
-                    <div class="skill-module">
+                </details>
+
+                <details class="skill-module">
+                    <summary class="skill-summary">
                         <h3>Soft Skills & Management</h3>
+                    </summary>
+                    <div class="expandable-content">
                         <ul>
                             <li>Directing multidisciplinary research projects from conceptual design through to experimental and clinical validation.</li>
                             <li>Instructing large engineering classes (~100 students), supervising laboratory activities, and guiding student design projects.</li>
                             <li>Coordinating joint research activities directly with clinical institutes and industrial partners.</li>
                         </ul>
                     </div>
-                </div>
+                </details>
+
             </div>
-        </details>
+        </section>
     
- <!-- PUBLICATIONS (Expandable - Closed by default) -->
-        <details id="publications" class="cv-section">
-            <summary>Selected Publications & Patents</summary>
-            <div class="section-content">
-                <a href="https://www.unibo.it/it/con-societa-e-impresa/imprese-e-non-profit/brevetti-ateneo/brevetti-ateneo/scheda/2528" target="_blank" class="pub-card">
+        <section id="publications" class="card">
+            <h2 class="section-title">Selected Publications & Patents</h2>
+            
+            <details class="pub-card">
+                <summary class="pub-summary">
                     <span class="pub-title">High-efficiency self-limiting tendon-mimetic Bowden cable with feedback control</span>
                     <div class="pub-authors">Inventor: G. Pisaneschi</div>
                     <div class="pub-journal">Italian Patent nº 102024000017122</div>
+                </summary>
+                <div class="expandable-content">
                     <div class="pub-abstract">
                         Introduces built-in passive mechanical overload control and active intrinsic sensing via electrical resistance, utilising superelastic Bowden wires.
                     </div>
-                </a>
+                    <a href="https://www.unibo.it/it/con-societa-e-impresa/imprese-e-non-profit/brevetti-ateneo/brevetti-ateneo/scheda/2528" target="_blank" class="pub-link-btn">View Patent →</a>
+                </div>
+            </details>
 
-                <a href="https://doi.org/10.1109/LRA.2025.3605094" target="_blank" class="pub-card">
+            <details class="pub-card">
+                <summary class="pub-summary">
                     <span class="pub-title">Superelastic Tendon-Like Bowden Cables: Advancing Assistive Exoskeletons</span>
                     <div class="pub-authors">G. Pisaneschi, et al.</div>
                     <div class="pub-journal">IEEE Robotics and Automation Letters (2025)</div>
+                </summary>
+                <div class="expandable-content">
                     <div class="pub-abstract">
                         Demonstrates built-in self-limiting and sensing for efficient and safe assistive wearable actuators using integrated superelastic Bowden wires.
                     </div>
-                </a>
+                    <a href="https://doi.org/10.1109/LRA.2025.3605094" target="_blank" class="pub-link-btn">Read Paper →</a>
+                </div>
+            </details>
 
-                <a href="https://doi.org/10.1016/j.compositesb.2024.111785" target="_blank" class="pub-card">
+            <details class="pub-card">
+                <summary class="pub-summary">
                     <span class="pub-title">Enhanced interface adhesion in shape memory alloy hybrid composites via an elastomeric interface</span>
                     <div class="pub-authors">G. Pisaneschi, et al.</div>
                     <div class="pub-journal">Composites Part B: Engineering (2024)</div>
+                </summary>
+                <div class="expandable-content">
                     <div class="pub-abstract">
                         Addresses and resolves interface failure modes induced by large martensitic transformation strains in composite materials.
                     </div>
-                </a>
+                    <a href="https://doi.org/10.1016/j.compositesb.2024.111785" target="_blank" class="pub-link-btn">Read Paper →</a>
+                </div>
+            </details>
 
-                <a href="https://doi.org/10.1088/1361-665X/ae4ae9" target="_blank" class="pub-card">
+            <details class="pub-card">
+                <summary class="pub-summary">
                     <span class="pub-title">Post-print annealing: a simple strategy for enhancing adhesion in FDM-printed PLA-SMA composites</span>
                     <div class="pub-authors">G. Pisaneschi, et al.</div>
                     <div class="pub-journal">Smart Materials and Structures (2026)</div>
-                </a>
+                </summary>
+                <div class="expandable-content">
+                    <div class="pub-abstract">
+                        Feasibility study on an innovative solution for the embedding of shape memory alloys in additive manufacturing composites.
+                    </div>
+                    <a href="https://doi.org/10.1088/1361-665X/ae4ae9" target="_blank" class="pub-link-btn">Read Paper →</a>
+                </div>
+            </details>
 
-                <a href="https://doi.org/10.1007/s40964-025-01098-1" target="_blank" class="pub-card">
+            <details class="pub-card">
+                <summary class="pub-summary">
                     <span class="pub-title">Numerical and Experimental Exploration of Patient-Specific Cranial Implants with 3D Printed PEKK via Arburg Plastic Freeforming</span>
                     <div class="pub-authors">G. Pisaneschi</div>
                     <div class="pub-journal">Progress in Additive Manufacturing (2025)</div>
-                </a>
-                
-                <a href="https://scholar.google.com/scholar?q=Gregorio+Pisaneschi" target="_blank" class="global-scholar">
-                    View collection on Google Scholar
-                </a>
-            </div>
-        </details>
-        
+                </summary>
+                <div class="expandable-content">
+                    <div class="pub-abstract">
+                        FEA and experiments on patient-specific cranial implants 3D printed with amorphous PEKK with APF technology demonstrated potential to overcome PEEK challenges.
+                    </div>
+                    <a href="https://doi.org/10.1007/s40964-025-01098-1" target="_blank" class="pub-link-btn">Read Paper →</a>
+                </div>
+            </details>
+            
+            <a href="https://scholar.google.com/scholar?q=Gregorio+Pisaneschi" target="_blank" class="global-scholar">
+                View collection on Google Scholar
+            </a>
+        </section>
     </main>
 </div>
 
