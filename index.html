@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Project | Collaboration & Info</title>
+    <title>Research Project | Conference Hub</title>
     <style>
         :root {
             --bg-color: #fafafa;
@@ -12,10 +12,13 @@
             --text-secondary: #555555;
             --accent-color: #0e9f6e;
             --border-color: #111111;
-            --section-bg: #f0f0f0;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -27,154 +30,179 @@
             padding: 1.5rem;
         }
 
-        .container {
+        .card {
             width: 100%;
             max-width: 500px;
             background-color: var(--surface-color);
             border: 2px solid var(--border-color);
-            padding: 2rem;
-            box-shadow: 8px 8px 0px var(--border-color); /* Brutalist shadow style */
+            padding: 2.5rem 2rem;
+            box-shadow: 8px 8px 0px var(--border-color);
         }
 
-        /* Logo Section */
+        /* --- LOGO SECTION --- */
         .logo-container {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .project-logo {
-            max-width: 160px; /* High legibility when small */
+            width: 100%;
+            max-width: 280px; 
             height: auto;
-            border: 1px solid #eee;
-            padding: 10px;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .project-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Info Section */
-        .info-section {
-            background-color: var(--section-bg);
-            padding: 1rem;
-            border-left: 4px solid var(--accent-color);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-
+        /* --- BUTTON LINKS --- */
         .links-container {
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .link-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.9rem;
+            padding: 1rem;
             font-weight: 600;
             color: var(--text-primary);
             text-decoration: none;
             border: 2px solid var(--border-color);
-            transition: 0.1s;
+            background-color: var(--surface-color);
+            transition: 0.1s ease;
+            text-align: center;
         }
 
-        .link-btn:active {
+        .link-btn:active, .link-btn:hover {
             transform: translate(2px, 2px);
             background-color: var(--text-primary);
-            color: white;
+            color: var(--surface-color);
+            box-shadow: none;
         }
 
-        /* Collaboration Section */
+        .primary-link {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .primary-link:active, .primary-link:hover {
+            background-color: var(--accent-color);
+            color: var(--surface-color);
+        }
+
+        /* --- COLLABORATION SECTION --- */
         .collab-section {
             border-top: 2px solid var(--border-color);
             padding-top: 1.5rem;
-            margin-top: 1.5rem;
+            text-align: left;
         }
 
-        .collab-title {
+        .section-title {
             font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+            font-weight: 800;
             text-transform: uppercase;
+            margin-bottom: 1.2rem;
         }
 
-        .collab-box {
-            margin-bottom: 1rem;
+        .collab-item {
+            margin-bottom: 1.2rem;
         }
 
         .collab-label {
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            text-transform: uppercase;
             display: block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--accent-color);
             margin-bottom: 0.2rem;
         }
 
+        .collab-text {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        /* --- PERSONAL SECTION --- */
+        .personal-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed var(--border-color);
+        }
+
+        /* --- FOOTER --- */
         .footer {
             margin-top: 2rem;
             text-align: center;
             font-size: 0.75rem;
             color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Section 1: Logo -->
+    <div class="card">
+        
+        <!-- SECTION 1: LOGO -->
         <div class="logo-container">
-            <!-- REPLACE 'logo.png' with your actual filename -->
             <img src="logo.png" alt="Project Logo" class="project-logo">
         </div>
 
-        <div class="header">
-            <h1 class="project-title">Project Name</h1>
-        </div>
-
-        <!-- Section 2: Project Info -->
-        <div class="info-section">
-            <strong>About the Project:</strong> This research focuses on the integration of superelastiche components to enhance wearable device adaptability... [Insert a brief, high-impact summary here].
-        </div>
-
+        <!-- SECTION 2: RESEARCH LINKS -->
         <div class="links-container">
-            <a href="PROJECT_INFO_URL" target="_blank" class="link-btn" style="border-color: var(--accent-color);">
-                🌐 Detailed Project Website
+            <!-- Replace hrefs with your actual URLs -->
+            <a href="https://doi.org/10.5281/zenodo.20410165" target="_blank" class="link-btn primary-link">
+                📂 Project Chronicle
             </a>
-            <a href="PAPER_URL" target="_blank" class="link-btn">📄 Journal Paper (DOI)</a>
-            <a href="VIDEO_URL" target="_blank" class="link-btn">🎥 Watch Project Video</a>
-            <a href="LINKEDIN_URL" target="_blank" class="link-btn">💼 LinkedIn</a>
-            <a href="UNIVERSITY_URL" target="_blank" class="link-btn">🏛️ University Profile</a>
+            
+            <a href="https://ieeexplore.ieee.org/document/11146757" target="_blank" class="link-btn">
+                📄 Journal Paper
+            </a>
+            
+            <a href="https://www.youtube.com/watch?v=kvhuRHvX2GQ" target="_blank" class="link-btn">
+                🎥 Project Video
+            </a>
         </div>
 
-        <!-- Section 3: Collaboration -->
+        <!-- SECTION 3: COLLABORATION -->
         <div class="collab-section">
-            <h2 class="collab-title">Collaboration</h2>
+            <h2 class="section-title">Collaboration</h2>
             
-            <div class="collab-box">
+            <div class="collab-item">
                 <span class="collab-label">Current Work</span>
-                <p>Developing robust, 3D-printable frameworks for rehabilitative soft-robotics and sensing matrices.</p>
+                <p class="collab-text">
+                    Developing assistive wearable technologies and rehabilitative interfaces using superelastiche materials and soft robotics.
+                </p>
             </div>
 
-            <div class="collab-box">
+            <div class="collab-item">
                 <span class="collab-label">Seeking</span>
-                <p>Partners in clinical validation, textile integration experts, and enthusiastic Master's/PhD students for upcoming lab activities.</p>
+                <p class="collab-text">
+                    Opportunities for clinical validation, partnerships in textile integration, and motivated students for laboratory activities.
+                </p>
+            </div>
+        </div>
+
+        <!-- SECTION 4: PERSONAL (CV & LINKEDIN) -->
+        <div class="personal-section">
+            <h2 class="section-title">About the Researcher</h2>
+            
+            <div class="links-container" style="margin-bottom: 0;">
+                <!-- Links to your separate HTML CV file -->
+                <a href="cv.html" class="link-btn primary-link">
+                    👤 View Interactive CV
+                </a>
+
+                <a href="https://www.linkedin.com/in/gregorio-pisaneschi-7975b880/" target="_blank" class="link-btn">
+                    💼 Connect on LinkedIn
+                </a>
             </div>
         </div>
 
         <div class="footer">
-            Bologna, 2026 | Conference Poster Supplement
+            Bologna, 2026
         </div>
     </div>
 
