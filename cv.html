@@ -11,8 +11,6 @@
     <style>
         :root {
             --bg-main: #f8fafc;
-            --bg-alt-1: #ebfbf4; /* Faint mint green */
-            --bg-alt-2: #f4f4f5; /* Flat light gray */
             --surface: #ffffff;
             --text-main: #0f172a;
             --text-muted: #64748b;
@@ -29,8 +27,6 @@
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-main: #090d16;
-                --bg-alt-1: rgba(14, 159, 110, 0.08); 
-                --bg-alt-2: #1e293b;
                 --surface: #111827;
                 --text-main: #f8fafc;
                 --text-muted: #94a3b8;
@@ -99,7 +95,7 @@
             gap: 8px;
         }
 
-        .nav-menu a {
+.nav-menu a {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -139,8 +135,8 @@
             background: var(--surface);
             padding: 40px;
             border-radius: var(--radius-lg);
-            border: 2px solid var(--text-main);
-            box-shadow: 6px 6px 0px var(--text-main); /* Flat, high-contrast shadow */
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.02);
         }
 
         header h1 {
@@ -331,8 +327,8 @@
         .pub-card:hover {
             border-color: var(--accent);
             background: var(--surface);
-            transform: translate(2px, 2px);
-            box-shadow: none;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(99, 102, 241, 0.15);
         }
 
         .pub-title {
@@ -439,7 +435,7 @@
                 display: none;
             }
 
-            .nav-menu {
+.nav-menu {
                 flex-direction: row;
                 justify-content: space-around;
                 gap: 0;
@@ -475,12 +471,58 @@
             }
         }
 
-        #experience, #skills {
-        background-color: var(--bg-alt-1);
+        /* ======================================================= */
+        /* SECTION & SIDE-MENU COLOR SYNCHRONIZATION               */
+        /* ======================================================= */
+
+        :root {
+            --color-exp: #4f46e5; /* Indigo for Experience */
+            --color-edu: #ef4444; /* Red for Education */
+            --color-ski: #0e9f6e; /* Mint Green for Skills */
+            --color-pub: #f59e0b; /* Amber for Publications */
         }
+
+        /* 1. Flat Borders for Main Sections */
+        #experience { border: 2px solid var(--color-exp); }
+        #education { border: 2px solid var(--color-edu); }
+        #skills { border: 2px solid var(--color-ski); }
+        #publications { border: 2px solid var(--color-pub); }
+
+        /* 2. Highlight Section Background when Scrolled/Targeted */
+        #experience:target { background-color: rgba(79, 70, 229, 0.05); }
+        #education:target { background-color: rgba(239, 68, 68, 0.05); }
+        #skills:target { background-color: rgba(14, 159, 110, 0.05); }
+        #publications:target { background-color: rgba(245, 158, 11, 0.05); }
+
+        /* 3. Match Side Menu Links (Hover and Active Highlighting) */
+        /* Adjust 'a[href="..."]' if your side menu links use a specific class */
         
-        #education, #publications {
-            background-color: var(--bg-alt-2);
+        a[href="#experience"]:hover, 
+        a[href="#experience"].active {
+            color: var(--color-exp);
+            border-left: 4px solid var(--color-exp);
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+
+        a[href="#education"]:hover, 
+        a[href="#education"].active {
+            color: var(--color-edu);
+            border-left: 4px solid var(--color-edu);
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+
+        a[href="#skills"]:hover, 
+        a[href="#skills"].active {
+            color: var(--color-ski);
+            border-left: 4px solid var(--color-ski);
+            background-color: rgba(14, 159, 110, 0.05);
+        }
+
+        a[href="#publications"]:hover, 
+        a[href="#publications"].active {
+            color: var(--color-pub);
+            border-left: 4px solid var(--color-pub);
+            background-color: rgba(245, 158, 11, 0.05);
         }
         
     </style>
