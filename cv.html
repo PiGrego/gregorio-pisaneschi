@@ -95,7 +95,7 @@
             gap: 8px;
         }
 
-.nav-menu a {
+        .nav-menu a {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -435,7 +435,7 @@
                 display: none;
             }
 
-.nav-menu {
+            .nav-menu {
                 flex-direction: row;
                 justify-content: space-around;
                 gap: 0;
@@ -524,6 +524,58 @@
             border-left: 4px solid var(--color-pub);
             background-color: rgba(245, 158, 11, 0.05);
         }
+
+        /* ======================================================= */
+        /* EXPANDABLE SECTIONS (ACCORDION) STYLING                 */
+        /* ======================================================= */
+
+        /* Base styling for the expandable box */
+        details.cv-section {
+            margin-bottom: 1.5rem;
+            background-color: var(--surface);
+            /* The borders will be applied by your existing #experience, #education rules */
+        }
+
+        /* The clickable title area */
+        details.cv-section summary {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            list-style: none; /* Hides default browser arrow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.1s ease;
+        }
+
+        /* Hide the default arrow in Safari */
+        details.cv-section summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Hover effect for the clickable title */
+        details.cv-section summary:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        /* The custom geometric arrow */
+        details.cv-section summary::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+
+        /* Flip the arrow when the section is open */
+        details.cv-section[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        /* Padding for the actual content inside the box */
+        .section-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
         
     </style>
 </head>
@@ -577,175 +629,187 @@
             </header>
         </section>
 
-        <section id="experience" class="card">
-            <h2 class="section-title">Professional Experience</h2>
-            <div class="timeline-container">
-                
-                <div class="timeline-entry">
-                    <div class="entry-header">
-                        <span class="entry-title">Research Grant</span>
-                        <span class="entry-date">Feb. 2024 – Present</span>
+<!-- EXPERIENCE (Expandable - Open by default) -->
+        <details id="experience" class="cv-section">
+            <summary>Professional Experience</summary>
+            <div class="section-content">
+                <div class="timeline-container">
+                    
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">Research Grant</span>
+                            <span class="entry-date">Feb. 2024 – Present</span>
+                        </div>
+                        <div class="entry-sub">University of Bologna — DIN & CIRI MAM Departments</div>
+                        <ul>
+                            <li><strong>Project ReMovAble (Aug. 2025 – Present):</strong> Developing an assistive hand exoskeleton with a hybrid soft-rigid design to support hand motor functions, in clinical collaboration with the <strong>Montecatone Rehabilitation Institute</strong> for tetraplegic patients.</li>
+                            <li><strong>Project DAREDEVIL (Feb. 2024 – Jan. 2025):</strong> Designed a pneumatic automated system and generated a numerical analysis database for implementation in a Digital Twin system.</li>
+                        </ul>
                     </div>
-                    <div class="entry-sub">University of Bologna — DIN & CIRI MAM Departments</div>
-                    <ul>
-                        <li><strong>Project ReMovAble (Aug. 2025 – Present):</strong> Developing an assistive hand exoskeleton with a hybrid soft-rigid design to support hand motor functions, in clinical collaboration with the <strong>Montecatone Rehabilitation Institute</strong> for tetraplegic patients.</li>
-                        <li><strong>Project DAREDEVIL (Feb. 2024 – Jan. 2025):</strong> Designed a pneumatic automated system and generated a numerical analysis database for implementation in a Digital Twin system.</li>
-                    </ul>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="entry-header">
-                        <span class="entry-title">Adjunct Professor</span>
-                        <span class="entry-date">Sept. 2017 – Present</span>
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">Adjunct Professor</span>
+                            <span class="entry-date">Sept. 2017 – Present</span>
+                        </div>
+                        <div class="entry-sub">University of Bologna — DEI Department</div>
+                        <ul>
+                            <li>Course: "Automatic Machines TA" for Automation Engineering. Team-driven design workshops and design of automatic pneumatic systems.</li>
+                        </ul>
                     </div>
-                    <div class="entry-sub">University of Bologna — DEI Department</div>
-                    <ul>
-                        <li>Course: "Automatic Machines TA" for Automation Engineering. Team-driven design workshops and design of automatic pneumatic systems.</li>
-                    </ul>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="entry-header">
-                        <span class="entry-title">Accelerator Program</span>
-                        <span class="entry-date">Sept. 2025</span>
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">Accelerator Program</span>
+                            <span class="entry-date">Sept. 2025</span>
+                        </div>
+                        <div class="entry-sub">MITdesignX Venice Accelerator (MDX)</div>
+                        <ul>
+                            <li>Participated in the venture accelerator program with <a href="https://braillefly.stibuz.dynu.net/a" target="_blank" style="color: var(--accent); text-decoration: underline; font-style: italic;">Braille Fly</a>, an innovative assistive technology project providing guides and a community for the blind and visually impaired.</li>
+                        </ul>
                     </div>
-                    <div class="entry-sub">MITdesignX Venice Accelerator (MDX)</div>
-                    <ul>
-                        <li>Participated in the venture accelerator program with <a href="https://braillefly.stibuz.dynu.net/a" target="_blank" style="color: var(--accent); text-decoration: underline; font-weight: italic;">Braille Fly</a>, an innovative assistive technology project providing guides and a community for the blind and visually impaired.</li></ul>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="entry-header">
-                        <span class="entry-title">Side Project</span>
-                        <span class="entry-date">June 2022 – June 2025</span>
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">Side Project</span>
+                            <span class="entry-date">June 2022 – June 2025</span>
+                        </div>
+                        <div class="entry-sub">Arburg Italia (Freeformer Printer) & Hospital Policlinico S. Orsola (Case Studies)</div>
+                        <ul>
+                            <li> Analysed the droplet process and evaluated material printability for custom 3D printing applications.</li>
+                            <li>Finite element evaluation and design of patient-specific 3D-printed cranial and maxillofacial bone plates.</li>
+                        </ul>
                     </div>
-                    <div class="entry-sub">Arburg Italia (Freeformer Printer) & Hospital Policlinico S. Orsola (Case Studies)</div>
-                    <ul>
-                        <li> Analysed the droplet process and evaluated material printability for custom 3D printing applications.</li>
-                        <li>Finite element evaluation and design of patient-specific 3D-printed cranial and maxillofacial bone plates.</li>
-                    </ul>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="entry-header">
-                        <span class="entry-title">Research Fellow</span>
-                        <span class="entry-date">Sept. 2015 – Nov. 2020</span>
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">Research Fellow</span>
+                            <span class="entry-date">Sept. 2015 – Nov. 2020</span>
+                        </div>
+                        <div class="entry-sub">University of Bologna — DIN & CIRI MAM Departments</div>
+                        <ul>
+                            <li><strong>ACMEC European Project (2020):</strong> Design of an actuation system with Shape Memory Alloy actuators for format changes on process lines.</li>
+                            <li><strong>IMA Group Partnership (2017 – 2019):</strong> Developed additive manufacturing strategies focused on design space exploration and structural topology optimisation.</li>
+                            <li><strong>Philip Morris International Track (2016 – 2017):</strong> Investigation of process criticalities for the production of IQOS sticks.</li>
+                        </ul>
                     </div>
-                    <div class="entry-sub">University of Bologna — DIN & CIRI MAM Departments</div>
-                    <ul>
-                        <li><strong>ACMEC European Project (2020):</strong> Design of an actuation system with Shape Memory Alloy actuators for format changes on process lines.</li>
-                        <li><strong>IMA Group Partnership (2017 – 2019):</strong> Developed additive manufacturing strategies focused on design space exploration and structural topology optimisation.</li>
-                        <li><strong>Philip Morris International Track (2016 – 2017):</strong> Investigation of process criticalities for the production of IQOS sticks.</li>
-                    </ul>
                 </div>
             </div>
-        </section>
+        </details>
 
-        <section id="education" class="card">
-            <h2 class="section-title">Education & Training</h2>
-            <div class="timeline-container">
-                <div class="timeline-entry">
-                    <div class="entry-header">
-                        <span class="entry-title">Ph.D. in Mechanics and Advanced Engineering Sciences (DIMSAI)</span>
-                        <span class="entry-date">Oct. 2020 – June 2024</span>
+<!-- EDUCATION (Expandable - Closed by default) -->
+        <details id="education" class="cv-section">
+            <summary>Education & Training</summary>
+            <div class="section-content">
+                <div class="timeline-container">
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">Ph.D. in Mechanics and Advanced Engineering Sciences (DIMSAI)</span>
+                            <span class="entry-date">Oct. 2020 – June 2024</span>
+                        </div>
+                        <div class="entry-sub">University of Bologna — Evaluation: Excellent</div>
+                        <ul>
+                            <li><strong>Dissertation:</strong> Study and Design of Novel Applications and Implementation Strategies for Shape Memory Alloys (SMAs).</li>
+                            <li><strong>International Research Stay:</strong> Feasibility study of an SMA Bowden cable for assistive devices at Miguel Hernandez University (Biomedical Neuroengineering Group).</li>
+                        </ul>
                     </div>
-                    <div class="entry-sub">University of Bologna — Evaluation: Excellent</div>
-                    <ul>
-                        <li><strong>Dissertation:</strong> Study and Design of Novel Applications and Implementation Strategies for Shape Memory Alloys (SMAs).</li>
-                        <li><strong>International Research Stay:</strong> Feasibility study of an SMA Bowden cable for assistive devices at Miguel Hernandez University (Biomedical Neuroengineering Group).</li>
-                    </ul>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="entry-header">
-                        <span class="entry-title">M.Sc. in Mechanical Engineering</span>
-                        <span class="entry-date">Sep. 2012 – July 2015</span>
+                    <div class="timeline-entry">
+                        <div class="entry-header">
+                            <span class="entry-title">M.Sc. in Mechanical Engineering</span>
+                            <span class="entry-date">Sep. 2012 – July 2015</span>
+                        </div>
+                        <div class="entry-sub">University of Bologna — 110/110 with Honors</div>
+                        <ul>
+                            <li> Specialisation in the mechanical engineering of automation and design.</li>
+                            <li><strong>International Thesis:</strong> Design and optimisation of a large-stroke flexure hinge for parallel mechanisms at the University of Twente, Netherlands.</li>
+                        </ul>
                     </div>
-                    <div class="entry-sub">University of Bologna — 110/110 with Honors</div>
-                    <ul>
-                        <li> Specialisation in the mechanical engineering of automation and design.</li>
-                        <li><strong>International Thesis:</strong> Design and optimisation of a large-stroke flexure hinge for parallel mechanisms at the University of Twente, Netherlands.</li>
-                    </ul>
                 </div>
             </div>
-        </section>
+        </details>
 
-<section id="skills" class="card">
-            <h2 class="section-title">Core Competencies</h2>
-            <div class="skills-dashboard">
-                <div class="skill-module">
-                    <h3>Simulation & Numerical Design</h3>
-                    <ul>
-                        <li>ANSYS finite element modelling (structural, modal, transient, topology optimisation).</li>
-                        <li>Advanced 3D CAD modelling, surface validation, and automated multi-joint kinematic analysis.</li>
-                        <li>Computation using MATLAB (nonlinear systems, custom optimisation) and Wolfram Mathematica.</li>
-                    </ul>
-                </div>
-                <div class="skill-module">
-                    <h3>Prototyping & Characterization</h3>
-                    <ul>
-                        <li>Additive Systems (FDM, Arburg Plastic Freeforming, DLP, structural printed electronics layout).</li>
-                        <li>Material testing protocols (tensile, pull-out, shear, Digital Image Correlation, drop weight impact profile setup).</li>
-                        <li>Languages: Italian (Native), English (Professional), Spanish (Limited).</li>
-                    </ul>
-                </div>
-                <div class="skill-module">
-                    <h3>Soft Skills & Management</h3>
-                    <ul>
-                        <li>Directing multidisciplinary research projects from conceptual design through to experimental and clinical validation.</li>
-                        <li>Instructing large engineering classes (~100 students), supervising laboratory activities, and guiding student design projects.</li>
-                        <li>Coordinating joint research activities directly with clinical institutes and industrial partners.</li>
-                    </ul>
+<!-- SKILLS (Expandable - Open by default) -->
+        <details id="skills" class="cv-section">
+            <summary>Core Competencies & Skills</summary>
+            <div class="section-content">
+                <div class="skills-dashboard">
+                    <div class="skill-module">
+                        <h3>Simulation & Numerical Design</h3>
+                        <ul>
+                            <li>ANSYS finite element modelling (structural, modal, transient, topology optimisation).</li>
+                            <li>Advanced 3D CAD modelling, surface validation, and automated multi-joint kinematic analysis.</li>
+                            <li>Computation using MATLAB (nonlinear systems, custom optimisation) and Wolfram Mathematica.</li>
+                        </ul>
+                    </div>
+                    <div class="skill-module">
+                        <h3>Prototyping & Characterization</h3>
+                        <ul>
+                            <li>Additive Systems: FDM, Arburg Plastic Freeforming (APF), DLP, structural printed electronics.</li>
+                            <li>Material testing protocols: Universal testing machines (tensile, flexural, shear, pull-out), Digital Image Correlation, and drop weight impact profile setup.</li>
+                            <li>Languages: Italian (Native), English (Professional working proficiency), Spanish (Limited working proficiency).</li>
+                        </ul>
+                    </div>
+                    <div class="skill-module">
+                        <h3>Soft Skills & Management</h3>
+                        <ul>
+                            <li>Directing multidisciplinary research projects from conceptual design through to experimental and clinical validation.</li>
+                            <li>Instructing large engineering classes (~100 students), supervising laboratory activities, and guiding student design projects.</li>
+                            <li>Coordinating joint research activities directly with clinical institutes and industrial partners.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </section>
+        </details>
     
-        <section id="publications" class="card">
-            <h2 class="section-title">Selected Publications & Patents</h2>
-            
-            <a href="https://www.unibo.it/it/con-societa-e-impresa/imprese-e-non-profit/brevetti-ateneo/brevetti-ateneo/scheda/2528" target="_blank" class="pub-card">
-                <span class="pub-title">High-efficiency self-limiting tendon-mimetic Bowden cable with feedback control</span>
-                <div class="pub-authors">Inventor: G. Pisaneschi</div>
-                <div class="pub-journal">Italian Patent nº 102024000017122</div>
-                <div class="pub-abstract">
-                    Introduces built-in passive mechanical overload control and active intrinsic sensing via electrical resistance, utilising superelastic Bowden wires.
-                </div>
-            </a>
+ <!-- PUBLICATIONS (Expandable - Closed by default) -->
+        <details id="publications" class="cv-section">
+            <summary>Selected Publications & Patents</summary>
+            <div class="section-content">
+                <a href="https://www.unibo.it/it/con-societa-e-impresa/imprese-e-non-profit/brevetti-ateneo/brevetti-ateneo/scheda/2528" target="_blank" class="pub-card">
+                    <span class="pub-title">High-efficiency self-limiting tendon-mimetic Bowden cable with feedback control</span>
+                    <div class="pub-authors">Inventor: G. Pisaneschi</div>
+                    <div class="pub-journal">Italian Patent nº 102024000017122</div>
+                    <div class="pub-abstract">
+                        Introduces built-in passive mechanical overload control and active intrinsic sensing via electrical resistance, utilising superelastic Bowden wires.
+                    </div>
+                </a>
 
-            <a href="https://doi.org/10.1109/LRA.2025.3605094" target="_blank" class="pub-card">
-                <span class="pub-title">Superelastic Tendon-Like Bowden Cables: Advancing Assistive Exoskeletons</span>
-                <div class="pub-authors">G. Pisaneschi, et al.</div>
-                <div class="pub-journal">IEEE Robotics and Automation Letters (2025)</div>
-                <div class="pub-abstract">
-                    Demonstrates built-in self-limiting and sensing for efficient and safe assistive wearable actuators using integrated superelastic Bowden wires.
-                </div>
-            </a>
+                <a href="https://doi.org/10.1109/LRA.2025.3605094" target="_blank" class="pub-card">
+                    <span class="pub-title">Superelastic Tendon-Like Bowden Cables: Advancing Assistive Exoskeletons</span>
+                    <div class="pub-authors">G. Pisaneschi, et al.</div>
+                    <div class="pub-journal">IEEE Robotics and Automation Letters (2025)</div>
+                    <div class="pub-abstract">
+                        Demonstrates built-in self-limiting and sensing for efficient and safe assistive wearable actuators using integrated superelastic Bowden wires.
+                    </div>
+                </a>
 
-            <a href="https://doi.org/10.1016/j.compositesb.2024.111785" target="_blank" class="pub-card">
-                <span class="pub-title">Enhanced interface adhesion in shape memory alloy hybrid composites via an elastomeric interface</span>
-                <div class="pub-authors">G. Pisaneschi, et al.</div>
-                <div class="pub-journal">Composites Part B: Engineering (2024)</div>
-                <div class="pub-abstract">
-                    Addresses and resolves interface failure modes induced by large martensitic transformation strains in composite materials.
-                </div>
-            </a>
+                <a href="https://doi.org/10.1016/j.compositesb.2024.111785" target="_blank" class="pub-card">
+                    <span class="pub-title">Enhanced interface adhesion in shape memory alloy hybrid composites via an elastomeric interface</span>
+                    <div class="pub-authors">G. Pisaneschi, et al.</div>
+                    <div class="pub-journal">Composites Part B: Engineering (2024)</div>
+                    <div class="pub-abstract">
+                        Addresses and resolves interface failure modes induced by large martensitic transformation strains in composite materials.
+                    </div>
+                </a>
 
-            <a href="https://doi.org/10.1088/1361-665X/ae4ae9" target="_blank" class="pub-card">
-                <span class="pub-title">Post-print annealing: a simple strategy for enhancing adhesion in FDM-printed PLA-SMA composites</span>
-                <div class="pub-authors">G. Pisaneschi, et al.</div>
-                <div class="pub-journal">Smart Materials and Structures (2026)</div>
-            </a>
+                <a href="https://doi.org/10.1088/1361-665X/ae4ae9" target="_blank" class="pub-card">
+                    <span class="pub-title">Post-print annealing: a simple strategy for enhancing adhesion in FDM-printed PLA-SMA composites</span>
+                    <div class="pub-authors">G. Pisaneschi, et al.</div>
+                    <div class="pub-journal">Smart Materials and Structures (2026)</div>
+                </a>
 
-            <a href="https://doi.org/10.1007/s40964-025-01098-1" target="_blank" class="pub-card">
-                <span class="pub-title">Numerical and Experimental Exploration of Patient-Specific Cranial Implants with 3D Printed PEKK via Arburg Plastic Freeforming</span>
-                <div class="pub-authors">G. Pisaneschi</div>
-                <div class="pub-journal">Progress in Additive Manufacturing (2025)</div>
-            </a>
-            
-            <a href="https://scholar.google.com/scholar?q=Gregorio+Pisaneschi" target="_blank" class="global-scholar">
-                View collection on Google Scholar
-            </a>
-        </section>
+                <a href="https://doi.org/10.1007/s40964-025-01098-1" target="_blank" class="pub-card">
+                    <span class="pub-title">Numerical and Experimental Exploration of Patient-Specific Cranial Implants with 3D Printed PEKK via Arburg Plastic Freeforming</span>
+                    <div class="pub-authors">G. Pisaneschi</div>
+                    <div class="pub-journal">Progress in Additive Manufacturing (2025)</div>
+                </a>
+                
+                <a href="https://scholar.google.com/scholar?q=Gregorio+Pisaneschi" target="_blank" class="global-scholar">
+                    View collection on Google Scholar
+                </a>
+            </div>
+        </details>
         
     </main>
 </div>
